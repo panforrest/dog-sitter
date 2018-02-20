@@ -6,7 +6,7 @@ const router = vertex.router()
 /*  This is a sample API route. */
 
 router.get('/:reservations', function(req, res){
-    turbo.fetch('reservation', {})
+    turbo.fetch('reservation', req.body) //{} retrieve all objects
     .then(data => {
     	res.json({
     		confirmation:'success',
@@ -26,6 +26,7 @@ router.post('/reservations', function(req, res){
 	if (!req.vertexSession) res.redirect('/')
     if (!req.vertexSession.user) res.redirect('/')
 
+    req.body.owner = req.vertexSession.user.id
     turbo.create('reservations', req.body)
     .then(data => {
     	res.json({

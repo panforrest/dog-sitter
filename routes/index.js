@@ -15,8 +15,12 @@ router.get('/dashboard', function(req, res){
     if (!req.vertexSession.user) res.redirect('/')
 
     turbo.fetchUser(req.vertexSession.user.id)
-    .then(data => {
-    	res.render('dashboard', { user: data })
+    .then(user => {
+    	// res.render('dashboard', { user: data })
+        return [user, turbo.fetch('reservations', { owner: user.id })]
+    })
+    .spread((user, reservations) => {
+        res.render('dashboard', { user: user, reservations: reservations })
     })
     .catch(err => {
     	res.json({
