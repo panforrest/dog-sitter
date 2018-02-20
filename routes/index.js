@@ -27,23 +27,23 @@ router.get('/dashboard', function(req, res){
 })
 
 /*  This route render json data */
-router.get('/json', function(req, res){
-	res.json({
-		confirmation: 'success',
-		app: process.env.TURBO_APP_ID,
-		data: 'this is a sample json route.'
-	})
-})
+// router.get('/json', function(req, res){
+// 	res.json({
+// 		confirmation: 'success',
+// 		app: process.env.TURBO_APP_ID,
+// 		data: 'this is a sample json route.'
+// 	})
+// })
 
 /*  This route sends text back as plain text. */
-router.get('/send', function(req, res){
-	res.send('This is the Send Route')
-})
+// router.get('/send', function(req, res){
+// 	res.send('This is the Send Route')
+// })
 
 /*  This route redirects requests to Turbo360. */
-router.get('/redirect', function(req, res){
-	res.redirect('https://www.turbo360.co/landing')
-})
+// router.get('/redirect', function(req, res){
+// 	res.redirect('https://www.turbo360.co/landing')
+// })
 
 
 module.exports = router

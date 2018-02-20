@@ -14,10 +14,12 @@ router.post('/register', function(req, res){
 	
 	turbo.createUser(req.body)
 	.then(data => {
-		res.json({
-			confirmation: 'success',
-			data: data
-		})
+		req.vertexSession.user = {id: data.id} 
+		res.redirect('/dashboard')
+		// res.json({
+		// 	confirmation: 'success',
+		// 	data: data
+		// })
 	})
 	.catch(err => {
 		res.json({
@@ -31,10 +33,11 @@ router.post('/login',function(req, res){
     turbo.login(req.body)
     .then(data => {
     	req.vertexSession.user = {id: data.id} // set session with user ID
-    	res.json({
-    		confirmation: 'success',
-    		data: data
-    	})
+    	// res.json({
+    	// 	confirmation: 'success',
+    	// 	data: data
+    	// })
+    	res.redirect('/dashboard')
     })
     .catch(err => {
     	res.json({

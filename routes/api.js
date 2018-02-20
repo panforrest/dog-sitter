@@ -5,23 +5,41 @@ const router = vertex.router()
 
 /*  This is a sample API route. */
 
-router.get('/:resource', function(req, res){
-	res.json({
-		confirmation: 'success',
-		resource: req.params.resource,
-		query: req.query // from the url query string
-	})
+router.get('/:reservations', function(req, res){
+    turbo.fetch('reservation', {})
+    .then(data => {
+    	res.json({
+    		confirmation:'success',
+	    	data: data
+    	})
+	    	
+    })	
+    .catch(err => {
+    	res.json({
+    		confirmation: 'failure',
+    		data: err
+    	})
+    })
 })
 
-router.get('/:resource/:id', function(req, res){
-	res.json({
-		confirmation: 'success',
-		resource: req.params.resource,
-		id: req.params.id,
-		query: req.query // from the url query string
-	})
-})
+router.post('/reservations', function(req, res){
+	if (!req.vertexSession) res.redirect('/')
+    if (!req.vertexSession.user) res.redirect('/')
 
+    turbo.create('reservations', req.body)
+    .then(data => {
+    	res.json({
+    		confirmation: 'success',
+    		data: data
+    	})
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'failure',
+    		data: err
+    	})
+    })
+})
 
 
 module.exports = router

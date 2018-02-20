@@ -7,9 +7,21 @@
   <!-- Call to Action -->
   <section id="call-to-action" class="row">
   	<div class="col-lg-6">
-	  <h3>Welcome to the Dashboard</h3>
+	  <h3>Welcome to the Dashboard, {{ user.name }}</h3>
 	  <p>You can use this page to create new appointments with dogsitters. You can only access this page if you are logged in.</p>
   	</div>
+    <div class="col-lg-6">
+      <form method="post" action="/api/reservations">        
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
+        </div>
+
+        <div class="input-group mb-2">
+          <input type="date" class="form-control" placeholder="2018-2-19" aria-label="Date" aria-describedby="basic-addon2" name="date">
+        </div>
+        <button class="btn btn-primary" type="submit">Create new reservation</button>  
+      </form>
+    </div>  
   </section>
 
   <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
