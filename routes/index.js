@@ -10,6 +10,22 @@ router.get('/', function(req, res){
 	res.render('index', {text: 'This is the dynamic data. Open index.js from the routes directory to see.'})
 })
 
+router.get('/dashboard', function(req, res){
+    if (!req.vertexSession) res.redirect('/')
+    if (!req.vertexSession.user) res.redirect('/')
+
+    turbo.fetchUser(req.vertexSession.user.id)
+    .then(data => {
+    	res.render('dashboard', { user: data })
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'fail',
+    		message: err.message
+    	})
+    })
+})
+
 /*  This route render json data */
 router.get('/json', function(req, res){
 	res.json({
