@@ -2,76 +2,48 @@
 <html dir="ltr" lang="en-US">
 {{>head}}
 
-<body class="container">
-	<div class="row">
+<body class="container-fluid">
+  <!-- Header -->	
+  <header class="row">
+  	<div>
+	  <h1>DogSitter</h1>
+	  <p>Simple web app to connect dog owners with dog sitter.</p>
+	</div>    
+    <!-- <img src="./images/dog-background-image.jpeg"> -->
+  </header>
 
-		<div class="col-md-6 col-md-offset-3" style="text-align:center;margin-bottom:48px">
-			<h1>Welcome to Turbo</h1>
-			<hr />
-			<div style="background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
-				You are currently looking at the <strong style="color:red">index.mustache</strong> file in the 'views' directory of your project. This template is rendered with the Mustache templating engine. <span style="color:red">{{text}}</span>
-			</div>
+  <!-- Call to Action -->
+  <section id="call-to-action" class="row">
+  	<div class="col-lg-6">
+	  <h3>Everyone is busy. </h3>
+	  <p>DogSitter uses trusted and reviewed sitters so that you knwo you are always getting reliable dogsitter. Dogsitter can help you find a sitter to watch your four legged friend when you have some place to be!</p>
+  	</div>
+  	<div class="col-lg-6"> 
+      <h3>Sign up Today!</h3>
+      <button class="btn btn-primary" type="submit">Sign Up</button>  
+  	</div>
+  </section>
 
-			<h3 style="margin-top:48px">Routes</h3>
-			<hr />
-			<p>
-				The routes are stored in the 'routes' directory. This scaffold comes with two sample routes out of the box: index and api. To test each route, click the following links:
-			</p>
+  <!--Sign Up Form -->
+  <section>
+  	<div id="sign-up">
+  	  <h3>Use the form below to sign up.</h3>
+  	  <form>
+  	  	<div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Full Name" aria-label="Full Name" aria-describedby="basic-addon2" name="name">
+  	  	</div>
+        
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2" name="email">
+  	  	</div>
 
-			<div class="row">
-				<div class="col-md-6 col-md-offset-0">
-					<div style="text-align:left;background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
-						<h4>Index Route</h4>
-						<ul style="padding-left:16px">
-							<li><a href="/json">JSON Response</a></li>
-							<li><a href="/send">Text Response</a></li>
-							<li><a href="/redirect">Redirect</a></li>
-						</ul>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div style="text-align:left;background:#f9f9f9;border:1px solid #ddd;border-radius:3px;padding:12px">
-						<h4>API Route</h4>
-						<ul style="padding-left:16px;">
-							<li><a href="/api/profile">Resource Request</a></li>
-							<li><a href="/api/profile?team=cavaliers">With Query Params</a></li>
-							<li><a href="/api/profile/lebron_james">With ID</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>			
-
-			<h3 style="margin-top:48px">Static Assets</h3>
-			<hr />
-			<p>
-				Static assets (images, js, css, etc) are located in the "public" directory. The image below is rendered from the 'images' directory of the public folder:
-				<br /><br />
-				<img src="/images/turbo.png" />
-				<br /><br />
-				When deployed on Turbo Vertex, static assets are <em>automatically</em> distributed to a global CDN so there is no need to set that up. If you decide to eject and deploy this project on your own architecture, you will have to configure a CDN distribution (or at least you should).
-			</p>
-
-			<h3 style="margin-top:48px">Deployment</h3>
-			<hr />
-			<p>
-				To deploy, connect the project to a Turbo 360 project using the APP_ID (from root directory):
-<pre style="text-align:left;margin-top:8px;background:#333;color:#fff">
-<code>$ turbo app APP_ID</code>
-</pre>
-
-				Then deploy by simply entering the deploy command:
-<pre style="text-align:left;margin-top:8px;background:#333;color:#fff">
-<code>$ turbo deploy</code>
-</pre>
-
-				When deployment is complete, you will see a live link where you can access the project on the internet!
-			</p>
-
-
-		</div>
-	</div>
-
+  	  	<div class="input-group mb-2">
+          <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" name="password">
+  	  	</div>
+  	  	<button class="btn btn-primary" type="submit">Submit</button>  
+  	  </form>
+  	</div>
+  </section>
 
   <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
   NOTE: These should be minified in a build script -->

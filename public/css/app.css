@@ -1,0 +1,39 @@
+header {
+	align-items: center;
+	background: url('../images/dog-background-image.jpeg');
+	background-position: bottom center;
+	background-size: cover;
+	color: white;
+	display: flex;
+	justify-content: center;
+	height: 80vh;
+	padding: 40px 80px;
+	text-align: center;
+	width: 100%;
+}
+
+header h2 {
+	font-size: 72px;
+	font-weight: bold;
+	display: block;
+	flex-basis: 100%;
+}
+
+header p {
+	font-size: 20px;
+	line-height: 40px;
+	flex-basis: 100%;
+}
+
+#call-to-action,
+#sign-up {
+	padding: 40px 80px;
+}
+
+#call-to-action div,
+ {
+	text-align: center;
+}
+
+#sign-up input { margin: 10px auto; }
+#sign-up input { margin: 10px auto; }
