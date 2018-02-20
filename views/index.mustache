@@ -18,9 +18,20 @@
 	  <h3>Everyone is busy. </h3>
 	  <p>DogSitter uses trusted and reviewed sitters so that you knwo you are always getting reliable dogsitter. Dogsitter can help you find a sitter to watch your four legged friend when you have some place to be!</p>
   	</div>
+
+  	<!-- Login -->
   	<div class="col-lg-6"> 
-      <h3>Sign up Today!</h3>
-      <button class="btn btn-primary" type="submit">Sign Up</button>  
+      <h3>Login Below</h3>
+  	  <form method="post" action="/auth/login">        
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" placeholder="Email Address" aria-label="Email Address" aria-describedby="basic-addon2" name="email">
+  	  	</div>
+
+  	  	<div class="input-group mb-2">
+          <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" name="password">
+  	  	</div>
+  	  	<button class="btn btn-primary" type="submit">Login</button>  
+  	  </form>
   	</div>
   </section>
 
