@@ -30,6 +30,21 @@ router.get('/dashboard', function(req, res){
     })
 })
 
+router.get('/reservations', function(req, res){
+
+    turbo.fetch('reservations', {})
+    .then(reservations => {
+        res.render('reservations', { reservations: reservations })
+        // return [user, turbo.fetch('reservations', { owner: user.id })]
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+            message: err.message
+        })
+    })
+})
+
 /*  This route render json data */
 // router.get('/json', function(req, res){
 // 	res.json({
