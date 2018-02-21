@@ -34,13 +34,34 @@ router.post('/reservations', function(req, res){
     		data: data
     	})
     })
-    .catch(err => {
+    .catch(error => {
     	res.json({
     		confirmation: 'failure',
-    		data: err
+    		data: data
     	})
     })
 })
 
+router.put('/reservations/:id', function(req, res){
+    if (!req.vertexSession) res.redirect('/')
+    if (!req.vertexSession.user) res.redirect('/') 
+
+    console.log(req.params.id)
+    console.log(req.body) 
+    
+    turbo.updateEntity('reservations', req.params.id, req.body)
+    .then(data => {
+        res.json({
+            confirmaiton: 'success',
+            data: data
+        })
+    })
+    .catch(error => {
+        res.json({
+            confirmation: 'failure',
+            data: error
+        })
+    }) 
+})
 
 module.exports = router

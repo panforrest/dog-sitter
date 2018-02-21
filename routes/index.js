@@ -31,11 +31,16 @@ router.get('/dashboard', function(req, res){
 })
 
 router.get('/reservations', function(req, res){
+    if (!req.vertexSession) res.redirect('/')
+    if (!req.vertexSession.user) res.redirect('/')
 
-    turbo.fetch('reservations', {})
-    .then(reservations => {
-        res.render('reservations', { reservations: reservations })
-        // return [user, turbo.fetch('reservations', { owner: user.id })]
+    turbo.fetchUser(req.vertexSession.user.id)
+    .then(user => {
+        // res.render('dashboard', { user: data })
+        return [user, turbo.fetch('reservations', {})]
+    })
+    .spread((user, reservations) => {
+        res.render('reservations', { user: user, reservations: reservations })
     })
     .catch(err => {
         res.json({

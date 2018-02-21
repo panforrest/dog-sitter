@@ -36,8 +36,8 @@
   </section>
 
   <!--Sign Up Form -->
-  <section>
-  	<div id="sign-up">
+  <section id="sign-up" class="row">
+  	<div class="col-lg-12" >
   	  <h3>Use the form below to sign up.</h3>
   	  <form method="post" action="/auth/register">
   	  	<div class="input-group mb-2">
@@ -51,6 +51,16 @@
   	  	<div class="input-group mb-2">
           <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2" name="password">
   	  	</div>
+
+        <span>Are you a ...</span>
+        <div class="form-group">
+          <input name="type" type="radio" id="radio100" value="Dog Owner">
+          <label for="radio100">Dog Owner</label>
+        </div>
+         <div class="form-group">
+          <input name="type" type="radio" id="radio100" value="Dog Sitter" checked>
+          <label for="radio100">Dog Sitter</label>
+        </div>
   	  	<button class="btn btn-primary" type="submit">Submit</button>  
   	  </form>
   	</div>
