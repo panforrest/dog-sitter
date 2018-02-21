@@ -36,6 +36,9 @@ router.get('/reservations', function(req, res){
 
     turbo.fetchUser(req.vertexSession.user.id)
     .then(user => {
+        if (user.type === 'Dog Owner') return [user, turbo.fetch('reservations', { owner: user.id })]
+        else return[user, turbo.fetch('reservations', { sitter: user.id })]
+
         // res.render('dashboard', { user: data })
         return [user, turbo.fetch('reservations', {})]
     })
