@@ -20,7 +20,8 @@ router.get('/dashboard', function(req, res){
         return [user, turbo.fetch('reservations', { owner: user.id })]
     })
     .spread((user, reservations) => {
-        res.render('dashboard', { user: user, reservations: reservations })
+        if (user.type === 'Dog Owner') res.render('dashboard', { user: user, reservations: reservations, isDogOwner: true})
+        else res.render('dashboard', { user: user, reservations: reservations, isDogSitter: true })
     })
     .catch(err => {
     	res.json({

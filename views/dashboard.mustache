@@ -28,6 +28,8 @@
 
   	</div>
     <div class="col-lg-6">
+
+      {{#isDogOwner}}
       <form method="post" action="/api/reservations">        
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
@@ -38,6 +40,7 @@
         </div>
         <button class="btn btn-primary" type="submit">Create new reservation</button>  
       </form>
+      {{/isDogOwner}}
 
       <h2>Reservations: </h2>
       <ul>
