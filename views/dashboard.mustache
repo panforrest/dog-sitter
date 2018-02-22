@@ -11,7 +11,11 @@
 	  <p>You can use this page to create new appointments with dogsitters. You can only access this page if you are logged in.</p>
       <h2>Update Profile</2>
       <form method="post" action="/auth/update"> 
-        <button id="btn-upload" class="btn btn-primary">Upload Image</button>       
+        <img src="{{ user.imag }}=-s120c" id="preview-image">
+        <button id="btn-upload" class="btn btn-primary">Upload Image</button> 
+        <div class="input-group mb-2" style="display: none">
+          <input type="text" class="form-control" placeholder="{{ user.image }}" aria-label="Full name" aria-describedby="basic-addon2" name="image" value="{{ user.image }}" id="image-input">
+        </div>      
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="{{ user.name }}" aria-label="Full name" aria-describedby="basic-addon2" name="name" value="{{ user.name }}">
         </div>
@@ -64,13 +68,19 @@
 
       $('#btn-upload').click(function(event){
         event.preventDefault()
+        $('#btn-upload').attr('disabled', true)
         turbo.uploadFile(function(err, data){
           if (err){
             alert('Error:' + err.message)
             return
           }
 
-          alert('Upload Complete: ' + JSON.stringify(data))
+          $('#btn-upload').attr('disabled', false)
+          $('#preview-image').attr('src', data.result.url+'=s120-c')
+          $('#image-input').attr('value', data.result.url)
+          // data.image.address
+          // alert('Upload Complete: ' + JSON.stringify(data))
+          console.log(data.result.url)
         })
       })
 
