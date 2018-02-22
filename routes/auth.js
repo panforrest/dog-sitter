@@ -46,26 +46,25 @@ router.post('/login',function(req, res){
     	})
 	    	
     })
+})
 
- //    const credentials = {
-	// 	email: req.body.email,
-	// 	password: req.body.password
-	// }
-	
-	// turbo.login(credentials)
-	// .then(data => {
-	// 	req.vertexSession.user = {id: data.id} // set session with user ID
-	// 	res.json({
-	// 		confirmation: 'success',
-	// 		data: data
-	// 	})
-	// })
-	// .catch(err => {
-	// 	res.json({
-	// 		confirmation: 'fail',
-	// 		message: err.message
-	// 	})
-	// })
+router.post('/update', function(req, res){
+    if (!req.vertexSession) res.redirect('/')
+    if (!req.vertexSession.user) res.redirect('/')
+
+    turbo.updateUser(req.vertexSession.user.id, req.body)
+    .then(data => {
+    	res.json({
+    		confirmation: 'success',
+    		data: data
+    	})
+    })
+    .catch(err => {
+    	res.json({
+    		confirmation: 'failure',
+    		message: err.message
+    	})
+    })
 })
 
 module.exports = router
