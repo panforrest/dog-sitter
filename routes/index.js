@@ -16,8 +16,10 @@ router.get('/dashboard', function(req, res){
 
     turbo.fetchUser(req.vertexSession.user.id)
     .then(user => {
+        if (user.type === 'Dog Owner') return [user, turbo.fetch('reservations', { owner: user.id })]
+        else return[user, turbo.fetch('reservations', { sitter: user.id })]
     	// res.render('dashboard', { user: data })
-        return [user, turbo.fetch('reservations', { owner: user.id })]
+        // return [user, turbo.fetch('reservations', { owner: user.id })]
     })
     .spread((user, reservations) => {
         if (user.type === 'Dog Owner') res.render('dashboard', { user: user, reservations: reservations, isDogOwner: true})
@@ -37,14 +39,15 @@ router.get('/reservations', function(req, res){
 
     turbo.fetchUser(req.vertexSession.user.id)
     .then(user => {
-        if (user.type === 'Dog Owner') return [user, turbo.fetch('reservations', { owner: user.id })]
-        else return[user, turbo.fetch('reservations', { sitter: user.id })]
+        // if (user.type === 'Dog Owner') return [user, turbo.fetch('reservations', { owner: user.id })]
+        // else return[user, turbo.fetch('reservations', { sitter: user.id })]
 
         // res.render('dashboard', { user: data })
         return [user, turbo.fetch('reservations', {})]
     })
     .spread((user, reservations) => {
-        res.render('reservations', { user: user, reservations: reservations })
+        if (user.type === 'Dog Owner') res.render('reservations', { user: user, reservations: reservations, isDogOwner: true})
+        else res.render('reservations', { user: user, reservations: reservations, isDogSitter: true })
     })
     .catch(err => {
         res.json({

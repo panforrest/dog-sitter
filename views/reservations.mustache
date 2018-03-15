@@ -11,9 +11,15 @@
 	  <p>View all available reservations made by dog owners at the right side of this page. If you are a Dog Sitter, you can accept a reservation to watch the owner's dog</p>
   	</div>
     <div class="col-lg-8">
-      <ul>
+      <ul id="reservations">
         {{#reservations}}
-        <li>{{dogName}} - {{date}} - <button class="btn btn-primary" onclick="_acceptReservation('{{ id }}', '{{ user.id }}')">Accept</button></li>
+        <li class="reservations">
+          {{dogName}} - {{date}} 
+
+          {{#isDogSitter}}
+          <button class="btn btn-primary" onclick="_acceptReservation('{{ id }}', '{{ user.id }}')">Accept</button>
+          {{/isDogSitter}}
+        </li>
         {{/reservations}}
       </ul>
     </div>  

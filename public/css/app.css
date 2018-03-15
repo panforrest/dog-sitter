@@ -7,12 +7,13 @@ header {
 	display: flex;
 	justify-content: center;
 	height: 80vh;
+	flex-wrap: wrap;
 	padding: 40px 80px;
 	text-align: center;
 	width: 100%;
 }
 
-header h2 {
+header h1 {
 	font-size: 72px;
 	font-weight: bold;
 	display: block;
@@ -37,3 +38,13 @@ header p {
 
 #sign-up input { margin: 10px auto; }
 #sign-up input { margin: 10px auto; }
+#reservations { list-style-type: none; }
+#reservations .reservations {
+	align-items: center;
+	border: 1px light gray;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+	padding: 20px;
+}
