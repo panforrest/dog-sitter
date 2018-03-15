@@ -16,14 +16,20 @@ header {
 header h1 {
 	font-size: 72px;
 	font-weight: bold;
-	display: block;
-	flex-basis: 100%;
 }
-
 header p {
 	font-size: 20px;
 	line-height: 40px;
-	flex-basis: 100%;
+}
+
+form {
+	text-align: center;
+	margin: 0 auto;
+}
+form.input-group {margin: 10px auto; }
+form input {
+	border: 1px solid lightgray !important;
+	border-radius: 8px !important;
 }
 
 #call-to-action,
@@ -39,9 +45,9 @@ header p {
 #sign-up input { margin: 10px auto; }
 #sign-up input { margin: 10px auto; }
 #reservations { list-style-type: none; }
-#reservations .reservations {
+#reservations .reservation {
 	align-items: center;
-	border: 1px light gray;
+	border: 1px solid lightgray;
 	border-radius: 8px;
 	display: flex;
 	justify-content: center;

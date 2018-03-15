@@ -11,7 +11,7 @@
 	  <p>You can use this page to create new appointments with dogsitters. You can only access this page if you are logged in.</p>
       <h2>Update Profile</2>
       <form method="post" action="/auth/update"> 
-        <img src="{{ user.imag }}=-s120c" id="preview-image">
+        <img src="{{ user.image }}=s120-c" id="preview-image">
         <button id="btn-upload" class="btn btn-primary">Upload Image</button> 
         <div class="input-group mb-2" style="display: none">
           <input type="text" class="form-control" placeholder="{{ user.image }}" aria-label="Full name" aria-describedby="basic-addon2" name="image" value="{{ user.image }}" id="image-input">
@@ -30,6 +30,7 @@
     <div class="col-lg-6">
 
       {{#isDogOwner}}
+      <h2>Create a REservation</h2>
       <form method="post" action="/api/reservations">        
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
@@ -43,9 +44,9 @@
       {{/isDogOwner}}
 
       <h2>Reservations: </h2>
-      <ul>
+      <ul id="reservations">
         {{#reservations}}
-        <li>{{dogName}} - {{date}}</li>
+        <li class="reservation">{{dogName}} - {{date}}</li>
         {{/reservations}}
       </ul>
 
