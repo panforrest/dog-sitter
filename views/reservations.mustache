@@ -13,8 +13,10 @@
     <div class="col-lg-8">
       <ul id="reservations">
         {{#reservations}}
-        <li class="reservations">
-          {{dogName}} - {{date}} 
+        <li class="reservation">
+          <img src="{{ image }}=s40-c">
+          <h2>{{dogName}} </h2>
+          <span>{{date}} </span>
 
           {{#isDogSitter}}
           <button class="btn btn-primary" onclick="_acceptReservation('{{ id }}', '{{ user.id }}')">Accept</button>

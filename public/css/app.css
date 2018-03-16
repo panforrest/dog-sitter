@@ -54,3 +54,12 @@ form input {
 	margin: 20px;
 	padding: 20px;
 }
+#reservations .reservation img {
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+#reservations .reservation h2 {
+	margin: 0;
+	padding: 0;
+}
