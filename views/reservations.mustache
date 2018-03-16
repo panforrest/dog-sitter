@@ -16,7 +16,7 @@
         <li class="reservation">
           <img src="{{ image }}=s40-c">
           <h2>{{dogName}} </h2>
-          <span>{{date}} </span>
+          <span class="reservation-date">{{ date }} </span>
 
           {{#isDogSitter}}
           <button class="btn btn-primary" onclick="_acceptReservation('{{ id }}', '{{ user.id }}')">Accept</button>
@@ -40,6 +40,10 @@
   <!-- Your app specific code -->
   <script type="text/javascript" src="/js/app.js"></script>
   <script type="text/javascript">
+
+    // let date = JSON.parse('{{{reservations}}}')
+    // console.log(date)
+
     function _acceptReservation(id, sitter){
       $.ajax({
         url: '/api/reservations/'+id,
