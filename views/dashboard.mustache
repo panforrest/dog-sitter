@@ -30,8 +30,14 @@
     <div class="col-lg-6">
 
       {{#isDogOwner}}
-      <h2>Create a REservation</h2>
-      <form method="post" action="/api/reservations">        
+      <h2>Create a Reservation</h2>
+      <form method="post" action="/api/reservations"> 
+        <img src="" id="dog-preview-image">
+        <button id="btn-reservation-upload" class="btn btn-primary">Upload Image</button>
+        <div class="input-group mb-2" style="display: none">
+          <input type="text" class="form-control" aria-label="Dog Image" aria-describedby="basic-addon2" name="image" id="dog-image-input">
+        </div>  
+
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
         </div>
@@ -82,6 +88,24 @@
           $('#btn-upload').attr('disabled', false)
           $('#preview-image').attr('src', data.result.url+'=s120-c')
           $('#image-input').attr('value', data.result.url)
+          // data.image.address
+          // alert('Upload Complete: ' + JSON.stringify(data))
+          console.log(data.result.url)
+        })
+      })
+
+      $('#btn-reservation-upload').click(function(event){
+        event.preventDefault()
+        $('#btn-reservation-upload').attr('disabled', true)
+        turbo.uploadFile(function(err, data){
+          if (err){
+            alert('Error:' + err.message)
+            return
+          }
+
+          $('#btn-reservation-upload').attr('disabled', false)
+          $('#dog-preview-image').attr('src', data.result.url+'=s80-c')
+          $('#dog-image-input').attr('value', data.result.url)
           // data.image.address
           // alert('Upload Complete: ' + JSON.stringify(data))
           console.log(data.result.url)
