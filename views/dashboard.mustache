@@ -78,7 +78,8 @@
       var turbo = Turbo({ site_id: '5a88f578496d1700140739a7' })
 
       $('#date-input').change(function(){
-        console.log(this.value);
+        console.log(new Date(this.value).toLocaleString('en-US', {weekeday: "short", month: "long", day: "numeric", year: "numeric"}))
+        // console.log(this.value);
       })
 
       $('#btn-upload').click(function(event){
