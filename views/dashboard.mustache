@@ -34,16 +34,21 @@
       <form method="post" action="/api/reservations"> 
         <img src="" id="dog-preview-image">
         <button id="btn-reservation-upload" class="btn btn-primary">Upload Image</button>
+        <!-- Input for image -->
         <div class="input-group mb-2" style="display: none">
           <input type="text" class="form-control" aria-label="Dog Image" aria-describedby="basic-addon2" name="image" id="dog-image-input">
         </div>  
-
+        <!-- Input for Dog's name -->
         <div class="input-group mb-2">
           <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
         </div>
-
+        <!-- Input for raw date -->
         <div class="input-group mb-2">
           <input type="date" class="form-control" placeholder="2018-2-19" aria-label="Date" aria-describedby="basic-addon2" name="date" id="date-input">
+        </div>
+        <!-- Hidden input for Formatted Date -->
+        <div class="input-group mb-2" style="display:none">
+          <input type="text" class="form-control" aria-label="Formatted Date" aria-describedby="basic-addon2" name="formatted" id="formatted">
         </div>
         <button class="btn btn-primary" type="submit">Create new reservation</button>  
       </form>
@@ -78,8 +83,10 @@
       var turbo = Turbo({ site_id: '5a88f578496d1700140739a7' })
 
       $('#date-input').change(function(){
-        console.log(new Date(this.value).toLocaleString('en-US', {weekeday: "short", month: "long", day: "numeric", year: "numeric"}))
-        // console.log(this.value);
+        let formatted = new Date(this.value).toLocaleString('en-US', {weekday: "short", month: "long", day: "numeric", year: "numeric"})
+        
+        $('#formatted').attr('value', formatted);
+        console.log($('#formatted').val())
       })
 
       $('#btn-upload').click(function(event){
