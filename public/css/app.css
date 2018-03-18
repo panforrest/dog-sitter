@@ -72,3 +72,9 @@ form input {
 #reservations .reservation span {
 	margin-left: auto;
 }
+#reservations .reservation .accepted {
+	padding: 10px;
+	background: #4cbd4c;
+    color: white;
+    border-radius: 8px;
+}
