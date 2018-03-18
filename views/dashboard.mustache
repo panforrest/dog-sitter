@@ -61,7 +61,7 @@
           <img src="{{ image }}=s40-c">
           <h2>{{ dogName }} </h2>
           {{#sitter}}
-          <span class="accepted">Accepted</span>
+          <a href="/profile/{{sitter}}" class="btn btn-primary accepted">Accepted</a>
           {{/sitter}}
           <span class="reservation-date">{{ formatted }} </span>
         </li>        
