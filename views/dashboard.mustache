@@ -60,6 +60,9 @@
         <li class="reservation">
           <img src="{{ image }}=s40-c">
           <h2>{{ dogName }} </h2>
+          {{#sitter}}
+          Accepted
+          {{/sitter}}
           <span class="reservation-date">{{ formatted }} </span>
         </li>        
         {{/reservations}}
