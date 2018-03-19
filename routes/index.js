@@ -57,6 +57,10 @@ router.get('/reservations', function(req, res){
     })
 })
 
+router.get('/profile/:id', function(req, res){
+    res.render('profile', {profile: req.params.id})
+})
+
 /*  This route render json data */
 // router.get('/json', function(req, res){
 // 	res.json({
