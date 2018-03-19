@@ -80,3 +80,7 @@ form input {
     margin-left: auto;
     border: none;
 }
+
+#profile-image {
+	border-radius: 50%;
+}

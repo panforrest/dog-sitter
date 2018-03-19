@@ -6,70 +6,25 @@
 
   <!-- Call to Action -->
   <section id="call-to-action" class="row">
-  	<div class="col-lg-6">
-	  <h3>This is Profile page for {{ profile }}</h3>
-	  <p>You can use this page to create new appointments with dogsitters. You can only access this page if you are logged in.</p>
-      <h2>Update Profile</2>
-      <form method="post" action="/auth/update"> 
-        <img src="{{ user.image }}=s120-c" id="preview-image">
-        <button id="btn-upload" class="btn btn-primary">Upload Image</button> 
-        <div class="input-group mb-2" style="display: none">
-          <input type="text" class="form-control" placeholder="{{ user.image }}" aria-label="Full name" aria-describedby="basic-addon2" name="image" value="{{ user.image }}" id="image-input">
-        </div>      
-        <div class="input-group mb-2">
-          <input type="text" class="form-control" placeholder="{{ user.name }}" aria-label="Full name" aria-describedby="basic-addon2" name="name" value="{{ user.name }}">
-        </div>
-        <div class="input-group mb-2">
-          <input type="email" class="form-control" placeholder="{{ user.email }}" aria-label="Email" aria-describedby="basic-addon2" name="email" value="{{ user.email }}">
-        </div>
-        <button class="btn btn-primary" type="submit">Update</button>  
-      </form>
-
-
-  	</div>
-    <div class="col-lg-6">
-
-      <h2>Reservations: </h2>
+    <div class="col-lg-4">
+      <img src="{{ user.image }}=s120-c" id="profile-image">
+      <h3>{{ user.name }}</h3>
+      <p>View all available reservations made by dog owners at the right side of this page. If you are a Dog Sitter, you can accept a reservation to watch the owner's dog</p>
+    </div>
+    <div class="col-lg-8">
       <ul id="reservations">
         {{#reservations}}
         <li class="reservation">
           <img src="{{ image }}=s40-c">
           <h2>{{ dogName }} </h2>
-          {{#sitter}}
-          <a href="/profile/{{sitter}}" class="btn btn-primary accepted">Accepted</a>
-          {{/sitter}}
           <span class="reservation-date">{{ formatted }} </span>
-        </li>        
+
+          {{#isDogSitter}}
+          <button class="btn btn-primary" onclick="_acceptReservation('{{ id }}', '{{ user.id }}')">Accept</button>
+          {{/isDogSitter}}
+        </li>
         {{/reservations}}
       </ul>
-
-      {{#isDogOwner}}
-      <h2>Create a Reservation</h2>
-      <form method="post" action="/api/reservations"> 
-        <img src="" id="dog-preview-image">
-        <button id="btn-reservation-upload" class="btn btn-primary">Upload Image</button>
-        <!-- Input for image -->
-        <div class="input-group mb-2" style="display: none">
-          <input type="text" class="form-control" aria-label="Dog Image" aria-describedby="basic-addon2" name="image" id="dog-image-input">
-        </div>  
-        <!-- Input for Dog's name -->
-        <div class="input-group mb-2">
-          <input type="text" class="form-control" placeholder="Dog's name" aria-label="Dog's name" aria-describedby="basic-addon2" name="dogName">
-        </div>
-        <!-- Input for raw date -->
-        <div class="input-group mb-2">
-          <input type="date" class="form-control" placeholder="2018-2-19" aria-label="Date" aria-describedby="basic-addon2" name="date" id="date-input">
-        </div>
-        <!-- Hidden input for Formatted Date -->
-        <div class="input-group mb-2" style="display:none">
-          <input type="text" class="form-control" aria-label="Formatted Date" aria-describedby="basic-addon2" name="formatted" id="formatted">
-        </div>
-        <button class="btn btn-primary" type="submit">Create new reservation</button>  
-      </form>
-      {{/isDogOwner}}
-
-
-
     </div>  
   </section>
 
@@ -86,62 +41,21 @@
   <!-- Your app specific code -->
   <script type="text/javascript" src="/js/app.js"></script>
   <script type="text/javascript">
-    
 
-    (function(){
-      var turbo = Turbo({ site_id: '5a88f578496d1700140739a7' })
+    // let date = JSON.parse('{{{reservations}}}')
+    // console.log(date)
 
-      $('#date-input').change(function(){
-        let formatted = new Date(this.value).toLocaleString('en-US', {weekday: "short", month: "long", day: "numeric", year: "numeric"})
-        
-        $('#formatted').attr('value', formatted);
-        console.log($('#formatted').val())
+    function _acceptReservation(id, sitter){
+      $.ajax({
+        url: '/api/reservations/'+id,
+        type: 'PUT',
+        data: { 'sitter': sitter },
+        success: function(result){
+          console.log(result)
+        }
       })
-
-      $('#btn-upload').click(function(event){
-        event.preventDefault()
-        $('#btn-upload').attr('disabled', true)
-        turbo.uploadFile(function(err, data){
-          if (err){
-            alert('Error:' + err.message)
-            return
-          }
-
-          $('#btn-upload').attr('disabled', false)
-          $('#preview-image').attr('src', data.result.url+'=s120-c')
-          $('#image-input').attr('value', data.result.url)
-          // data.image.address
-          // alert('Upload Complete: ' + JSON.stringify(data))
-          console.log(data.result.url)
-        })
-      })
-
-      $('#btn-reservation-upload').click(function(event){
-        event.preventDefault()
-        $('#btn-reservation-upload').attr('disabled', true)
-        turbo.uploadFile(function(err, data){
-          if (err){
-            alert('Error:' + err.message)
-            return
-          }
-
-          $('#btn-reservation-upload').attr('disabled', false)
-          $('#dog-preview-image').attr('src', data.result.url+'=s80-c')
-          $('#dog-image-input').attr('value', data.result.url)
-          // data.image.address
-          // alert('Upload Complete: ' + JSON.stringify(data))
-          console.log(data.result.url)
-        })
-      })
-
-    })()
+    }
 
   </script>
-
-
-
-
-
-
 </body>
 </html>

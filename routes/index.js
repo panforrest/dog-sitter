@@ -58,7 +58,25 @@ router.get('/reservations', function(req, res){
 })
 
 router.get('/profile/:id', function(req, res){
-    res.render('profile', {profile: req.params.id})
+
+    turbo.fetchUser(req.params.id)
+    .then(user => {
+        // res.json({
+        //     confirmation: 'success',
+        //     data: data
+        // })
+        res.render('profile', {user: user})
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+            message: err.message
+        })
+    })
+
+
+
+    // res.render('profile', {profile: req.params.id})
 })
 
 /*  This route render json data */
