@@ -1,3 +1,22 @@
+body {
+  padding-top:80px;
+}
+nav { 
+  background-color: #e8e8e8;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+nav .navbar-brand {margin-top: 10px;}
+nav .nav-tab {
+	height: 80px;
+	padding: 20px;
+}
 header {
 	align-items: center;
 	background: url('../images/dog-background-image.jpeg');
