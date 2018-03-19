@@ -3,21 +3,17 @@
 {{>head}}
 
 <body class="container-fluid">
-  <nav>
-    <span class="navbar-brand mb-0 h1">Dogsitter</span>
-    <a class="nav-tab" href="/dashboard">Dashboard</a>
-    <a class="nav-tab" href="/reservations">Reservations</a>
-  </nav>
+  {{>nav}}
 
   <!-- Call to Action -->
   <section id="call-to-action" class="row">
   	<div class="col-lg-6">
-	  <h3>Welcome to the Dashboard, {{ user.name }}</h3>
-	  <p>You can use this page to create new appointments with dogsitters. You can only access this page if you are logged in.</p>
-      <h2>Update Profile</2>
+
+      <h2>Update Profile</h2>
       <form method="post" action="/auth/update"> 
-        <img src="{{ user.image }}=s120-c" id="preview-image">
-        <button id="btn-upload" class="btn btn-primary">Upload Image</button> 
+        <img src="{{ user.image }}=s120-c" id="preview-image"><br><br>
+        <button id="btn-upload" class="btn btn-secondary">Upload Image</button>
+        <br><br> 
         <div class="input-group mb-2" style="display: none">
           <input type="text" class="form-control" placeholder="{{ user.image }}" aria-label="Full name" aria-describedby="basic-addon2" name="image" value="{{ user.image }}" id="image-input">
         </div>      
