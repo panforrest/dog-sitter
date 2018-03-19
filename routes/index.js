@@ -61,12 +61,22 @@ router.get('/profile/:id', function(req, res){
 
     turbo.fetchUser(req.params.id)
     .then(user => {
-        // res.json({
-        //     confirmation: 'success',
-        //     data: data
+        return [user, turbo.fetch('reservations', {sitter: user})]
+    })    
+    .spread((user, reservations) => {
+        res.render('reservations', { user: user, reservations: reservations})
+    })    
+        // turbo.fetch(reservations, {sitter: req.params.id})
+        // .then(data => {
+        //     res.render('profile', {user: user; data: data})    
         // })
-        res.render('profile', {user: user})
-    })
+        // .catch(err => {
+        //     res.json({
+        //         confirmation: 'fail',
+        //         message: err.message
+        //     })
+        // })
+        // res.render('profile', {user: user})
     .catch(err => {
         res.json({
             confirmation: 'fail',
