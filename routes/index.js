@@ -43,7 +43,7 @@ router.get('/reservations', function(req, res){
         // else return[user, turbo.fetch('reservations', { sitter: user.id })]
 
         // res.render('dashboard', { user: data })
-        return [user, turbo.fetch('reservations', {})]
+        return [user, turbo.fetch('reservations', {sitter: { $not: { $exists: false } } } )]
     })
     .spread((user, reservations) => {
         if (user.type === 'Dog Owner') res.render('reservations', { user: user, reservations: reservations, isDogOwner: true})
