@@ -61,9 +61,14 @@ router.get('/profile/:id', function(req, res){
 
     turbo.fetchUser(req.params.id)
     .then(user => {
-        return [user, turbo.fetch('reservations', {sitter: user})]
+        return [user, turbo.fetch('reservations', {sitter: user.id})]
     })    
     .spread((user, reservations) => {
+        // res.json({
+        //     confimation: 'success',
+        //     reservations: reservations
+        // })
+
         res.render('reservations', { user: user, reservations: reservations})
     })    
         // turbo.fetch(reservations, {sitter: req.params.id})
