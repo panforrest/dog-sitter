@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+{{>head}}
+
+<body class="container-fluid">
+  {{>nav}}
+  <!-- Call to Action -->
+  <section id="call-to-action" class="row">
+  	<div class="col-lg-4">
+	  <h3>Available Dog Sitters List</h3>
+    <p></p>
+  	</div>
+    <div class="col-lg-8">
+      <ul id="reservations">
+        {{#profiles}}
+        <li class="reservation">
+          <img src="{{ image }}=s40-c">
+          <h2>{{ name }}</h2>
+          <a href="/profile/{{id}}" class="btn btn-primary" > View Profile </a>
+          <!-- <span class="reservation-date">{{ formatted }} </span> -->
+        </li>
+        {{/profiles}}
+      </ul>
+    </div>  
+  </section>
+
+  <!-- Turbo library imports: jQuery, Turbo CDN, sample app.js.
+  NOTE: These should be minified in a build script -->
+  <script type="text/javascript" src="/js/jquery.js"></script>
+
+  <!-- For file uploading. Remove if file upload not necessry -->
+  <script type="text/javascript" src="/js/dropzone.js"></script> 
+
+  <!-- Turbo CDN. Better to use CDN than to store locally. -->
+  <script type="text/javascript" src="https://cdn.turbo360-dev.com/dist/turbo.min.js"></script>
+
+  <!-- Your app specific code -->
+  <script type="text/javascript" src="/js/app.js"></script>
+  <script type="text/javascript">
+
+    // let date = JSON.parse('{{{reservations}}}')
+    // console.log(date)
+
+    function _acceptReservation(id, sitter){
+      $.ajax({
+        url: '/api/reservations/'+id,
+        type: 'PUT',
+        data: { 'sitter': sitter },
+        success: function(result){
+          console.log(result)
+        }
+      })
+    }
+
+  </script>
+</body>
+</html>

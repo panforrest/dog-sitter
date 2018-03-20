@@ -64,34 +64,36 @@ router.get('/profile/:id', function(req, res){
         return [user, turbo.fetch('reservations', {sitter: user.id})]
     })    
     .spread((user, reservations) => {
-        // res.json({
-        //     confimation: 'success',
-        //     reservations: reservations
-        // })
-
         res.render('reservations', { user: user, reservations: reservations})
     })    
-        // turbo.fetch(reservations, {sitter: req.params.id})
-        // .then(data => {
-        //     res.render('profile', {user: user; data: data})    
-        // })
-        // .catch(err => {
-        //     res.json({
-        //         confirmation: 'fail',
-        //         message: err.message
-        //     })
-        // })
-        // res.render('profile', {user: user})
     .catch(err => {
         res.json({
             confirmation: 'fail',
             message: err.message
         })
     })
+})
 
+router.get('/profiles', function(req, res){
+    turbo.fetch('user', { type: "Dog Sitter" })
+    .then(users => {
+        // res.json({
+        //     confirmation: 'success',
+        //     user: user
+        // })
+        res.render('profiles', {profiles: users})
+    })
+    .catch(err => {
+        res.json({
+            confirmation: 'fail',
+            message: err.message
+        })
+    })
+})
 
-
-    // res.render('profile', {profile: req.params.id})
+router.get('/logout', function(req, res){
+    req.vertexSession.reset()
+    res.redirect('/')
 })
 
 /*  This route render json data */
