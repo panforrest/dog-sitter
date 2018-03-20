@@ -1,6 +1,5 @@
-body {
-  padding-top:80px;
-}
+body {  padding-top:80px; }
+body.landing {padding: 0; }
 nav { 
   background-color: #e8e8e8;
   position: fixed;
@@ -19,7 +18,8 @@ nav .nav-tab {
 header {
 	align-items: center;
 	background: url('../images/dog-background-image.jpeg');
-	background-position: bottom center;
+	background-attachment: fixed;
+	background-position: center center;
 	background-size: cover;
 	color: white;
 	display: flex;
@@ -29,14 +29,18 @@ header {
 	padding: 40px 80px;
 	text-align: center;
 	width: 100%;
+	margin: 0 !important;
 }
 
 header h1 {
 	font-size: 72px;
 	font-weight: bold;
+	text-trnasform: uppercase;
 }
 header p {
+	font-weight: 100;
 	font-size: 20px;
+	letter-spacing: 2.5px;
 	line-height: 40px;
 }
 
@@ -50,18 +54,13 @@ form input {
 	border-radius: 8px !important;
 }
 
-#call-to-action,
-#sign-up {
-	padding: 40px 80px;
-}
-
 #call-to-action div,
- {
+#sign-up div {
 	text-align: center;
 }
 
 #sign-up input { margin: 10px auto; }
-#sign-up input { margin: 10px auto; }
+#sign-up .input-group { margin: 0 auto; }
 #reservations { list-style-type: none; }
 #reservations .reservation {
 	align-items: center;
